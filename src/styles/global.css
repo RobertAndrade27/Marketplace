@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
 
 :root {
-    --primary: #06D6A0;
-    --secondary:#007bff
+    --primary: 6,240,160;
+    --secondary:250,100,61;
 }
 
 html,
@@ -40,8 +40,21 @@ input[type='date']:disabled{
     font-size: 15px;
 }
 
+.bg-primary {
+    background-color: rgb(var(--secondary)) !important;
+}
+
 .bg-secondary {
-    background-color: var(--secondary) !important;
+    background-color: rgb(var(--secondary)) !important;
+}
+
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:disabled,
+.btn-primary:hover{
+    background-color: rgb(var(--primary)) !important;
+    border-color: rgb(var(--primary));
 }
 
 .btn-secondary,
@@ -49,18 +62,32 @@ input[type='date']:disabled{
 .btn-secondary:active,
 .btn-secondary:disabled,
 .btn-secondary:hover{
-    background-color: var(--secondary) !important;
-    border-color: var(--secondary);
+    background-color: rgb(var(--secondary)) !important;
+    border-color: rgb(var(--secondary));
 }
 
 .bg-primary {
-    background-color: var(--primary) !important;
+    background-color: rgb(var(--primary)) !important;
+}
+
+
+.badge {
+    font-weight: lighter;
+}
+
+.badge.badge-primary {
+    background-color: rgb(var(--primary), 0.2);
+    color: rgb(1, 105, 1);
+}
+.badge.badge-secondary {
+    background-color: rgb(var(--secondary), 0.5);
+    color: rgb(var(--secondary));
 }
 
 .box {
-    background-color: white;
-    box-shadow: black ;
-    border-radius: 5px;
+    background-color: #ffffff;
+    box-shadow: 1px 5px 5px rgb(219, 219, 219);    
+    border-radius: 5px ;
     display: inline-block;
     padding: 40px;
 }

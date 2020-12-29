@@ -1,0 +1,32 @@
+.petshop-infos span{
+    vertical-align: middle;
+    color: #626264;
+}
+
+.petshop-infos span.mdi-star{
+    color: #facd5d;
+    
+}
+
+.petshop-infos span.mdi-cash-usd-outline{
+    color: #f8990b;
+    
+}
+
+.petshop-infos span.mdi-crosshairs-gps{
+    color: #20945a;
+    
+}
+
+
+.petshop-infos text {
+    font-size: 15px;
+    margin-right: 10px;
+    vertical-align: middle;
+    color: #626264;
+}
+
+.petshop-image {
+    border-radius: 15px;
+    margin-bottom: 10px;
+}

@@ -1,6 +1,7 @@
 import './styles.css'
 import Header from '../../components/header'
 import Petshop from '../../components/petshop'
+import Map from '../../components/map'
 
 const Home = () => {
     return (
@@ -14,8 +15,9 @@ const Home = () => {
                 {[1,2,3,4,5,6,7,8,9].map(p =><Petshop />)}
                 </ul>
             </div>
+            <Map />
         </div>
-    )
-}
+    );
+};
 
 export default Home

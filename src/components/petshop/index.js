@@ -4,7 +4,7 @@ import './styles.css'
 const Petshop = () => {
     return (
     <li className="petshop d-inline-block">
-        <div className="d-inline-block"><img src="https://iguatemi.com.br/saojosedoriopreto/sites/saojosedoriopreto/files/2019-04/COBASI.png" 
+        <div className="d-inline-block"><img src="https://www.petlove.com.br/static/uploads/banner_image/image/4304/logo-petlove-push.png" 
          className="img-fluid " 
          />
          </div>

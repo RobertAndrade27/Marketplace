@@ -1,24 +1,26 @@
-import './styles.css'
+import './styles.css';
 
-import googleMapReact from 'google-map-react'
-
-
+import GoogleMapReact from 'google-map-react'
+import Marker from '../marker'
 
 const Map = () => {
-    return(
+    return (
         <div className="container-map">
-            <googleMapReact
-                bootstrapURLKeys={{ key: 'AIzaSyDgjaXS9hhhAKeBFucICG7qv3tyNYgSiOM' }}
-                center = {{
-                    lat:-21.197433,
-                    lng:-47.772673,
+            <GoogleMapReact
+                bootstrapURLKeys={{ 
+                    key: 'AIzaSyDMaxShS1wjRDCF-rWqiIsDV_OK8Rh3eJU' 
+                }}
+                center={{
+                    lat: -21.197433,
+                    lng: -47.772673,
                 }}
                 defaultZoom={15}
-            ></googleMapReact>
+            >
+                <Marker lat={-21.197433} lng={-47.772673}/>
+            </GoogleMapReact>
         </div>
-    )
+    );
 }
 
-
-
 export default Map;
+

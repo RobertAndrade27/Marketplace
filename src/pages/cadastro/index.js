@@ -1,10 +1,15 @@
 import { useState }from 'react'
+import { useDispatch } from 'react-redux'
+import { setCustomer as setStoreCustomer } from '../../store/modules/shop/actions'
 
 import Header from '../../components/header';
 import Illustration from '../../assets/illustration.png';
 
+
 const Cadastro = () => {
 
+
+    const dispatch = useDispatch ();
     const [customer, setCustomer] = useState ({
         external_id: new Date().getTime().toString(),
         name: '',
@@ -22,7 +27,7 @@ const Cadastro = () => {
     });
 
     const goToCheckout = () => {
-        console.log(customer)
+        dispatch (setStoreCustomer (customer));
     }
 
     return (

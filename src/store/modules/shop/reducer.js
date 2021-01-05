@@ -1,4 +1,5 @@
 import produce from 'immer';
+import types from './types'
 
 const INITIAL_STATE = {
     customer: {},
@@ -6,7 +7,7 @@ const INITIAL_STATE = {
 
 function shop(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case 'SET_CUSTOMER': {
+        case types.SET_CUSTOMER : {
             return produce(state, (draft) => {
                 draft.customer = action.customer;
             })

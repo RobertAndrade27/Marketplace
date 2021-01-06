@@ -1,15 +1,16 @@
 import './styles.css';
-
+import { useSelector } from 'react-redux'
 import MarkerIcon from '../../assets/marker.png'
 import MarkerIconSelected from '../../assets/marker-selected.png'
 
-const Marker = () => {
+const Marker = ({ petshop }) => {
+
+    const { petshopMapSelected } = useSelector((state) => state.shop )
+
     return (
         <div>
-        <img src={MarkerIconSelected}/>
-        <img src="https://www.petlove.com.br/static/uploads/banner_image/image/4304/logo-petlove-push.png" 
-         className="img-marker " 
-         />
+        <img src={petshopMapSelected === petshop._id ? MarkerIconSelected : MarkerIcon} />
+        <img src={petshop.logo} className="img-marker "/>
         </div>
     );
 }

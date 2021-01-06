@@ -1,22 +1,24 @@
 import './styles.css';
+import { useSelector } from 'react-redux'
 
 import GoogleMapReact from 'google-map-react'
 import Marker from '../marker'
 
-const Map = () => {
+const Map = ( {petshops }) => {
+
+    const { mapCenter } = useSelector(state => state.shop);
     return (
         <div className="container-map">
             <GoogleMapReact
                 bootstrapURLKeys={{ 
                     key: 'AIzaSyDMaxShS1wjRDCF-rWqiIsDV_OK8Rh3eJU' 
                 }}
-                center={{
-                    lat: -21.197433,
-                    lng: -47.772673,
-                }}
+                center={mapCenter}
+
                 defaultZoom={15}
             >
-                <Marker lat={-21.197433} lng={-47.772673}/>
+                {petshops.map(p => 
+                <Marker petshop={p} lat={p.location.lat} lng={p.location.lng}/>)}
             </GoogleMapReact>
         </div>
     );

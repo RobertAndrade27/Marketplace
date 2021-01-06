@@ -11,7 +11,7 @@ const Map = ( {petshops }) => {
         <div className="container-map">
             <GoogleMapReact
                 bootstrapURLKeys={{ 
-                    key: 'AIzaSyDMaxShS1wjRDCF-rWqiIsDV_OK8Rh3eJU' 
+                    key: '' 
                 }}
                 center={mapCenter}
 

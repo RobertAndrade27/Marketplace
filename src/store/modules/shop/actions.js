@@ -18,3 +18,12 @@ export function setShopMapSelected(petshops){
 export function setMapCenter(location){
     return {type: types.SET_MAP_CENTER, location}
 }
+
+
+export function requestPetshop(id){
+    return {type: types.REQUEST_PETSHOP, id}
+}
+
+export function setPetshop(petshop){
+    return {type: types.SET_PETSHOP, petshop};
+}

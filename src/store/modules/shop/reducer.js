@@ -4,6 +4,7 @@ import types from './types'
 const INITIAL_STATE = {
     customer: {},
     petshops: [],
+    petshop: {},
     petshopMapSelected: null,
     mapCenter: {
         lat: -23.561684,
@@ -33,6 +34,12 @@ function shop(state = INITIAL_STATE, action) {
         case types.SET_MAP_CENTER : {
             return produce(state, (draft) => {
                 draft.mapCenter = action.location;
+            })
+        }
+        
+        case types.SET_PETSHOP : {
+            return produce(state, (draft) => {
+                draft.petshop = action.petshop;
             })
         }
 

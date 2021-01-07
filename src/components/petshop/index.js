@@ -27,7 +27,7 @@ const Petshop = ( { petshop }) => {
                     <div className="petshop-infos">
                         <text>
                         <span class="mdi mdi-star"></span>
-                        <b> {petshop.destaque} </b></text>  
+                        <b> 4,5 </b></text>  
                         <span class="mdi mdi-cash-usd-outline"></span>
                         <text> {petshop.categoria}</text> 
                         <span class="mdi mdi-crosshairs-gps"></span>

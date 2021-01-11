@@ -1,18 +1,30 @@
+
+import {useDispatch, useSelector} from 'react-redux';
+import { toggleCartProdutct } from '../../../store/modules/shop/actions'
+
 import './styles.css';
 
+const Product = ({ product }) => {
 
-const Product = () => {
+    const dispatch = useDispatch();
+    const { cart } = useSelector((state) => state.shop);
+    const added = cart.findIndex((p) => p._id == product._id) != -1;
+
     return (
         <div className="product col-3">
-            <img src="https://www.katirapet.com.br/uploads/katirapet/produtos_imagens/golden-ad-frango77.png" 
+            <img src={product.capa} 
             className="img-fluid align-center" 
             />
-            <button className="btn btn-primary rounded-circle">+</button>
+            <button 
+                onClick={() => dispatch(toggleCartProdutct(product))} 
+            className={`btn btn-${added ? 'secondary' : 'primary'} rounded-circle`}
+            >
+                {added ? '-' : '+' } </button>
             <h4>
-                <label className="badge badge-primary">R$ 90,00</label>
+                <label className="badge badge-primary">R$ {product.preco.toFixed(2)}</label>
             </h4>
             <small>
-                <b>Ração Premium Special Golden Adulto Frango 15kg - Katira Pet</b>
+                <b>{product.nome}</b>
             </small>
         </div>
     );

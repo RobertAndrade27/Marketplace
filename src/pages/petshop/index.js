@@ -4,13 +4,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { requestPetshop } from '../../store/modules/shop/actions'
 
 import Header from '../../components/header';
-import Product from '../../components/product/card'
+import Product from '../../components/product/card';
 
 import './styles.css';
 
 const Petshop = ({ match }) => {
 
-    const dispatch = useDispatch ();
+     
+
+    const dispatch = useDispatch ();   
     const {petshop} = useSelector(state => state.shop)
 
     useEffect (() => {
@@ -33,21 +35,21 @@ const Petshop = ({ match }) => {
                             <span class="mdi mdi-crosshairs-gps"></span>
                             <text> 2km</text>               
                     </div>
-                    <label className="badge badge-primary"> Frete Grátis</label>
+                    <label className="badge badge-primary"> {petshop.Frete}</label>
                     </div>
-                    <div className="col-10">
-                        <h5>Produtos</h5>
-                        <br/>
-                        <div className="row">
-                        {petshop.products.map((p) => (
-                        <Product products={p}/>
-                        ))}
-                    </div>
-                    
-                    </div>
-                </div>
-
-            </div>
+            <div className="col-10">
+                <h5>Produtos</h5>
+                <br/>
+                <div className="row">
+                    {petshop.products?.map((p) => (
+                        <Product product={p} />
+                    ))}
+                        
+                      
+        </div>                    
+        </div>
+        </div>
+        </div>
         </div>
     )
 }

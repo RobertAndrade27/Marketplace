@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import {useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { requestPetshops } from '../../store/modules/shop/actions'
 
@@ -7,15 +7,15 @@ import Header from '../../components/header';
 import Petshop from '../../components/petshop';
 import Map from '../../components/map'
 
-
 const Home = () => {
 
     const dispatch = useDispatch();
     const { petshops } = useSelector((state) => state.shop)
 
     useEffect(() => {
-        dispatch(requestPetshops());
+        dispatch(requestPetshops())
     }, [])
+
 
     return (
         <div className="h-100">

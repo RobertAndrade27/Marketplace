@@ -1,3 +1,4 @@
+import { useSelector } from 'react-redux'
 import Logo from '../../assets/logo.png'
 import LogoWhite from '../../assets/logo-white.png'
 
@@ -6,6 +7,8 @@ import './styles.css';
 
 
 const Header = ({ whiteVersion }) => {
+
+    const { cart } = useSelector((state) => state.shop);
 
     //evento para abrir itens
     const openDrawer = () => {
@@ -25,7 +28,7 @@ const Header = ({ whiteVersion }) => {
     <button onClick={() => openDrawer()}
      class="btn btn-secondary cart-button">
         <span className="mdi mdi-cart"></span>
-        2 ítens</button>
+        {cart.length} ítens</button>
 </div>
 );
 }

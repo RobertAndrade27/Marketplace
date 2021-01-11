@@ -1,7 +1,7 @@
 import { takeLatest, all, call, put } from 'redux-saga/effects';
 import types from './types'
 import api from '../../../services/api'
-import { setPetshops, setPetshop} from './actions'
+import { setPetshops, setPetshop } from './actions'
 
 // Função Genérica -> * equialente ao async porém mais avançado
 
@@ -12,8 +12,8 @@ export function* requestPetshops () {
 }
 
 export function* requestPetshop(payload) {
-    const response = yield call (api.get,`/petshops/${payload.id}`);
-    const res = response.data
+    const response = yield call (api.get,`/petshop/${payload.id}`);
+    const res = response.data;
     yield put(setPetshop(res.petshop));
 }
 

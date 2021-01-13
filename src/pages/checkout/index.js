@@ -1,18 +1,19 @@
-import dayjs from 'dayjs'
-import { useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import dayjs from 'dayjs';
+import _ from 'underscore';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
 import Header from '../../components/header'
 import Product from '../../components/product/list'
 
 
-import './styles.css';
 
+import './styles.css';
 
 const Checkout = () => {
 
-    const { cart } = useSelector (state => state.shop);
+    const { cart, transactionFee, defaultRecipient } = useSelector (state => state.shop);
 
 
     const total = cart.reduce((total, product) => {
@@ -31,12 +32,12 @@ const Checkout = () => {
         shipping: {
                 name: 'Conexo Advantages',
                 fee: 1000,
-                delivery_date: dayjs().add(7, 'days').format('YYYY-MM'),
+                delivery_date: dayjs().add(7, 'days').format('YYYY-MM-DD'),
                 expedited: true,
                 address: {
                     country: 'br',
                     state: '',
-                    city: "Cotia",
+                    city: '',
                     neighborhood: '',
                     street: '',
                     street_number: '',
@@ -62,7 +63,48 @@ const Checkout = () => {
 
     const makePurchase = () =>{
         console.log(transection)
+    };
+
+    const getSplitRules = () => {
+        const productsByPetshop = _.groupBy(
+            cart, 
+            (product) => product.petshop_id.recipient_id);       
+
+            let result = [] ;
+
+            Object.keys(productsByPetshop).map((petshop) => {
+                const products = productsByPetshop[petshop];
+                const totalValuePerPetshop = products
+                .reduce((total, product) => {
+                    return total + product.preco;
+                }, 0)
+                .toFixed(2)
+
+                const totalFee = (totalValuePerPetshop * transactionFee).toFixed(2);
+
+                result.push({
+                    recipient_id: products[0].petshop_id.recipient_id,
+                    percentage: Math.floor(
+                        ((totalValuePerPetshop - totalFee ) / total) * 100 
+                        ),
+                    liable: true,
+                    charge_processing_fee: true,
+                });
+            })
+
+
+            const totalPetshopsPercentage = result.reduce((total, recipient) => {
+                return total + parseFloat(recipient.percentage);
+            }, 0)
+
+            result.push ({
+                ...defaultRecipient,
+                percentage: 100 - totalPetshopsPercentage,
+            });
+            return result;
     }
+
+
 
     useEffect(() => {
         setTransection({
@@ -74,10 +116,11 @@ const Checkout = () => {
 			unit_price: product.preco.toFixed(2).toString().replace('.', ''),
 			quantity: 1,
 			tangible: true
-            }))
-        })
-    }, [total])
-
+            })),
+            split_rules: getSplitRules (), 
+        });
+    }, [total]);
+  
   
 
 
@@ -121,6 +164,7 @@ const Checkout = () => {
                     <div className="col-2 pl-0">
                         <input type="text" maxlength="2" placeholder="UF" className="form-control form-control-lg"
                        onChange={(e) => setShippingValue('state', e.target.value)}
+                       
                         />
                     </div>
                     <div className="col-4 pl-0">

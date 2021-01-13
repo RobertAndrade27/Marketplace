@@ -11,7 +11,15 @@ const INITIAL_STATE = {
         lng: -46.625378,
     },
     cart: [],
-}
+    transactionFee: 0.1,
+    defaultRecipient: {
+    recipient_id: 're_ckjvtjo9e00jf0g9tg66e4di5',
+    percentage: 10,
+    liable: true,
+    }
+};
+
+
 
 function shop(state = INITIAL_STATE, action) {
     switch (action.type) {

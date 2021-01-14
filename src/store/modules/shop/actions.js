@@ -31,3 +31,12 @@ export function setPetshop(petshop){
 export function toggleCartProdutct(product) {
     return { type: types.TOGGLE_CART_PRODUCT, product}
 }
+
+export function setTransaction(transaction) {
+    return { type: types.SET_TRANSACTION, transaction}
+}
+
+
+export function makePruchase() {
+    return { type: types.MAKE_PURCHASE}
+}

@@ -13,8 +13,8 @@ const Routes = () => {
         <Router>
             <Route path="/" exact component={Home} />
             <Route path="/petshop/:id" exact component={Petshop} />
-            <Route path="/cadastro" exact component={Checkout} />
-            <Route path="/checkout" exact component={Cadastro} />
+            <Route path="/cadastro" exact component={Cadastro} />
+            <Route path="/checkout" exact component={Checkout} />
             <Sidebar />
         </Router>
        

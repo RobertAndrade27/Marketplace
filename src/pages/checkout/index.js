@@ -1,17 +1,17 @@
 import dayjs from 'dayjs';
 import _ from 'underscore';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-
-import Header from '../../components/header'
-import Product from '../../components/product/list'
-
-
+import {setTransaction as setStoreTransaction, makePruchase } from '../../store/modules/shop/actions';
+import Header from '../../components/header';
+import Product from '../../components/product/list';
 
 import './styles.css';
 
 const Checkout = () => {
+
+    const dispatch = useDispatch()
 
     const { cart, transactionFee, defaultRecipient } = useSelector (state => state.shop);
 
@@ -21,7 +21,7 @@ const Checkout = () => {
     }, 0)
 
 
-    const [transection, setTransection] = useState ({
+    const [transaction, setTransaction] = useState ({
 
         amount: 0,
         card_number: '',
@@ -49,21 +49,26 @@ const Checkout = () => {
     });
 
     const setShippingValue = (key, value) => {
-        setTransection({
-            ...transection,
+        setTransaction({
+            ...transaction,
             shipping:{
-                ...transection.shipping,
+                ...transaction.shipping,
                 address: {
-                    ...transection.shipping.address,
+                    ...transaction.shipping.address,
                     [key]: value,
-                }
-            }
-        })
-    }
-
-    const makePurchase = () =>{
-        console.log(transection)
+                },
+            },
+        });
     };
+   
+        const makePurchase = () => {
+        dispatch(setStoreTransaction(transaction));
+       setTimeout(() => {
+        dispatch(makePruchase())
+       }, 100)
+  
+};
+
 
     const getSplitRules = () => {
         const productsByPetshop = _.groupBy(
@@ -107,8 +112,8 @@ const Checkout = () => {
 
 
     useEffect(() => {
-        setTransection({
-            ...transection,
+        setTransaction({
+            ...transaction,
             amount: total.toFixed(2).toString().replace('.', ''),
             items: cart.map((product) => ({
             id: product._id,
@@ -179,26 +184,26 @@ const Checkout = () => {
                     <div className="row mb-3">
                         <div className="col-12">
                         <input type="text" placeholder="Número do Cartão" className="form-control form-control-lg"
-                        onChange={(e) => setTransection({...transection, card_number: e.target.value})}
+                        onChange={(e) => setTransaction({...transaction, card_number: e.target.value})}
                         />
                     </div>     
                 </div>
                 <div className="row mb-3">
                         <div className="col-6">
-                        <input type="date" placeholder="Validade" className="form-control form-control-lg"
-                        onChange={(e) => setTransection({...transection, card_expiration_date: e.target.value})}
+                        <input type="text" placeholder="Validade" className="form-control form-control-lg"
+                        onChange={(e) => setTransaction({...transaction, card_expiration_date: e.target.value})}
                         />
                 </div>
                 <div className="col-6 pl-0">
                         <input type="text" maxlength="3" placeholder="CVV" className="form-control form-control-lg"
-                        onChange={(e) => setTransection({...transection, card_cvv: e.target.value})}
+                        onChange={(e) => setTransaction({...transaction, card_cvv: e.target.value})}
                         />
             </div>
             </div>
             <div className="row mb-3">
                         <div className="col-6">
                         <input type="text" placeholder="Nome do titular" className="form-control form-control-lg"
-                        onChange={(e) => setTransection({...transection, card_holder_name : e.target.value})}
+                        onChange={(e) => setTransaction({...transaction, card_holder_name : e.target.value})}
                         />
                 </div>
                 <div className="col-6 pl-0">
@@ -233,6 +238,6 @@ const Checkout = () => {
     </div>
 </div>
     );
-};
+                        }
 
 export default Checkout;

@@ -96,7 +96,7 @@ const Cadastro = () => {
                         setCustomer({ ...customer, birthday: e.target.value});
                     }}
                 />
-                <Link to="/cadastro" onClick={() => goToCheckout()} className="btn btn-lg btn-block btn-secondary">
+                <Link to="/checkout" onClick={() => goToCheckout()} className="btn btn-lg btn-block btn-secondary">
                     Finalizar Pedido
                 </Link>
 

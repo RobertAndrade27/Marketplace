@@ -12,7 +12,7 @@ const Marker = ({ petshop }) => {
         <Link to={`/petshop/${petshop._id}`}>
         <img 
             src={
-                petshopMapSelected === petshop._id ? MarkerIconSelected : MarkerIcon} />
+                petshopMapSelected == petshop._id ? MarkerIconSelected : MarkerIcon} />
         <img src={petshop.logo} className="img-marker "/>
         </Link>
     );

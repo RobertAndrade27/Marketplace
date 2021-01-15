@@ -12,38 +12,36 @@ const INITIAL_STATE = {
     },
     cart: [],
     transactionFee: 0.1,
-    defaultRecipient: {
-    recipient_id: 're_ckjvtjo9e00jf0g9tg66e4di5',
-    percentage: 10,
-    liable: true,
+    defaultRecipient:{
+	recipient_id: 're_ckjvtjo9e00jf0g9tg66e4di5',
+	percentage: 10,
+	liable: true,        
     },
-    transaction:
-    {
-        amount: 0 ,
-        card_number: '',
-        card_cvv: '',
-        card_expiration_date: '',
-        card_holder_name: '',
-        customer: {},
-        billing: {
-            name: 'Conexo Advantages',
-            address: {
-                country: 'br',
-                state: 'sp',
-                city: 'Ribeirao Preto',
-                neighborhood: 'Lagoinha',
-                street: 'R Walt Disney',
-                street_number: '100',
-                zipcode: '14060090'
-            }
-        },
-        shipping: {},
-        items: [],
-        split_rules: []
-    }
-
+    transaction: {        
+            amount: 0,
+            card_number: '',
+            card_cvv: '',
+            card_expiration_date:'' ,
+            card_holder_name:'' ,
+            customer: {},         
+            billing: {
+                name: 'ConexoPet Ltda',
+                address: {
+                    country: 'br',
+                    state: 'sp',
+                    city: 'Cotia',
+                    neighborhood: 'Rio Cotia',
+                    street: 'Rua Matrix',
+                    street_number: '9999',
+                    zipcode: '06714360'
+                }
+            },
+            shipping: {},
+            items: [],
+            split_rules: []
+        }
+    
 };
-
 
 
 function shop(state = INITIAL_STATE, action) {
@@ -79,7 +77,7 @@ function shop(state = INITIAL_STATE, action) {
 
         case types.TOGGLE_CART_PRODUCT: {
             return produce(state, (draft) => {
-                const index = draft.cart.findIndex((p) => p._id == action.product._id);
+                const index = draft.cart.findIndex((p) => p._id === action.product._id);
                 if (index !== -1){
                     draft.cart.splice(index, 1)
                 } else {

@@ -22,13 +22,13 @@ const Checkout = () => {
 
 
     const [transaction, setTransaction] = useState ({
-
+      
         amount: 0,
         card_number: '',
         card_cvv: '',
         card_expiration_date: '',
         card_holder_name: '',
-        
+              
         shipping: {
                 name: 'Conexo Advantages',
                 fee: 1000,
@@ -79,13 +79,14 @@ const Checkout = () => {
 
             Object.keys(productsByPetshop).map((petshop) => {
                 const products = productsByPetshop[petshop];
-                const totalValuePerPetshop = products
-                .reduce((total, product) => {
+                const totalValuePerPetshop = products.reduce((total, product) => {
                     return total + product.preco;
-                }, 0)
-                .toFixed(2)
+                }, 0).toFixed(2)
 
                 const totalFee = (totalValuePerPetshop * transactionFee).toFixed(2);
+
+//AQUIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII
+
 
                 result.push({
                     recipient_id: products[0].petshop_id.recipient_id,
@@ -127,7 +128,7 @@ const Checkout = () => {
     }, [total]);
   
   
-
+    
 
     return (<div className="h-100">
         <Header />   
@@ -161,22 +162,19 @@ const Checkout = () => {
                     </div>
                 </div>
                 <div className="row mb-3">                                    
-                <div className="col-6">
+                <div className="col-9">
                         <input type="text" placeholder="Bairro" className="form-control form-control-lg"
                         onChange={(e) => setShippingValue('neighborhood', e.target.value)}
                         />
                     </div>
-                    <div className="col-2 pl-0">
+                    <div className="col-3 pl-0">
                         <input type="text" maxlength="2" placeholder="UF" className="form-control form-control-lg"
                        onChange={(e) => setShippingValue('state', e.target.value)}
                        
                         />
                     </div>
-                    <div className="col-4 pl-0">
-                        <input type="text" placeholder="Complemento" className="form-control form-control-lg"/>
-
-                        </div>
-                    </div>
+                   
+                </div>
                    
 
                     <span className="section-title">Dados de Pagamento:</span>
@@ -201,14 +199,12 @@ const Checkout = () => {
             </div>
             </div>
             <div className="row mb-3">
-                        <div className="col-6">
+                        <div className="col-12">
                         <input type="text" placeholder="Nome do titular" className="form-control form-control-lg"
                         onChange={(e) => setTransaction({...transaction, card_holder_name : e.target.value})}
                         />
                 </div>
-                <div className="col-6 pl-0">
-                        <input type="number" placeholder="CPF / CNPJ do titular" className="form-control form-control-lg"/>
-            </div>
+               
             </div>
 
             <div className="row 4">

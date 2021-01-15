@@ -14,7 +14,7 @@ const Cadastro = () => {
     const [customer, setCustomer] = useState ({
         external_id: new Date().getTime().toString(),
         name: '',
-        type: 'indivisual',
+        type: 'individual ',
         country: 'br',
         email: '',
         documents: [

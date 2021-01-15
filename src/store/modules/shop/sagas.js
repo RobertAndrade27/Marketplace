@@ -20,7 +20,7 @@ export function* requestPetshop(payload) {
 
 export function* makePurchase(){
     const { transaction } = yield select(state => state.shop);
-    const response = yield call(api.post, `/purchase`, transaction);
+    const response = yield call(api.post, '/purchase', transaction);
     const res = response.data;
 
     if (res.error){

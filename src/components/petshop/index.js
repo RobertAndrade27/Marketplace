@@ -14,7 +14,7 @@ const Petshop = ( { petshop }) => {
         dispatch(setMapCenter(petshop.location));
     };
     return (
-    <li className={ `petshop d-inline-block ${petshopMapSelected === petshop._id ? 'active' : '' }`}
+    <li className={ `petshop d-inline-block ${petshopMapSelected == petshop._id ? 'active' : '' }`}
          onClick={() => setSelectedPetshop()}
          >
         <div className="d-inline-block">
